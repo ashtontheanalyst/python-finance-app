@@ -102,6 +102,11 @@ def home():
         sampFigure=sampFigure,
         sampBar=sampBar,)
 
+# Adding some styling
+@app.route("/new")
+def new():
+    return render_template('new.html')
+
 
 # RUNNING ---------------------------------------------------------------------------------------------------------------------
 # Debug mode shows us a bunch of terminal messages, debugging, etc. (not for prod.)

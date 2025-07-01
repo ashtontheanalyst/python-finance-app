@@ -1,0 +1,42 @@
+body{
+    margin: 0px;
+}
+
+h1{
+    margin: 0px;
+}
+
+/*Making a header*/
+#header{
+    height: 100px;
+    background-color: rgb(177, 218, 177);
+    /*Turns the div into a flex box, everything inside becomes a flex and is easier to use.
+    align items center makes everything inside the header div center, justify-content is for vertical align*/
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+#headerText{
+    background-color: rgb(39, 70, 39);
+    color: white;
+    font-size: 30px;
+    font-weight: bold;
+    border: 2px solid black;
+    /*This gets the border away from the text, 8px text to border verticall, 16px horizontally*/
+    padding: 8px 16px;
+}
+
+
+/*Playing around with boxes*/
+.box{
+    height: 150px;
+    width: 150px;
+    border: 2px solid black;
+    text-align: center;
+    font-size: 30px;
+}
+
+#box1{
+    background-color: plum;
+}
