@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Basic Home</title>
+</head>
+<body>
+    <h1>Finance Dashboard</h1>
+
+    <h4>Raw Data Set:</h4>
+    {{ samp|safe }}
+    <br>
+
+    <h4>Top 5 Debits Decending:</h4>
+    {{ sampT5DD|safe }}
+    <br>
+
+    <h4>Top 5 Debits, Amount and Date (GET RID OF LABEL ON HTML):</h4>
+    {{ sampT5DamountDate|safe }}
+    <br>
+
+    <h4>Top 5 Credits Decending:</h4>
+    {{ sampT5CD|safe }}
+    <br><br>
+
+    <h4>Raw Data Set:</h4>
+    {{ sampFigure|safe }}
+    <br><br>
+
+    <h4>Raw Data Set:</h4>
+    {{ sampBar|safe }}
+    <br><br>
+</body>
+</html>
