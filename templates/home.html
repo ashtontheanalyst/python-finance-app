@@ -3,33 +3,40 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Basic Home</title>
+    <title>New Page with style</title>
+    <link rel="stylesheet" href="/static/styles.css">
 </head>
 <body>
-    <h1>Finance Dashboard</h1>
+    <!--Header-->
+    <div class="header">
+        <h1 class="headerText">Smith</h1>
+        <img src="{{ url_for('static', filename='images/whiteLogo.svg') }}" id="headerLogo" alt="Logo">
+        <h1 class="headerText">Money</h1>
+    </div>
 
-    <h4>Raw Data Set:</h4>
-    {{ samp|safe }}
-    <br>
+    <!--Tables-->
+    <!--Side by Side Tables-->
+    <div class="multipleTable">
+        <div class="tableDisplay">
+            <h3 class="tableTitle">Top 5 Debits Decending</h3>
+            <div class="table">
+                {{ sampT5DD | safe }}
+            </div>
+        </div>
+        <div class="tableDisplay">
+            <h3 class="tableTitle">Top 5 Credits Decending</h3>
+            <div class="table">
+                {{ sampT5CD | safe }}
+            </div>
+        </div>
+    </div>
 
-    <h4>Top 5 Debits Decending:</h4>
-    {{ sampT5DD|safe }}
-    <br>
-
-    <h4>Top 5 Debits, Amount and Date (GET RID OF LABEL ON HTML):</h4>
-    {{ sampT5DamountDate|safe }}
-    <br>
-
-    <h4>Top 5 Credits Decending:</h4>
-    {{ sampT5CD|safe }}
-    <br><br>
-
-    <h4>Raw Data Set:</h4>
-    {{ sampFigure|safe }}
-    <br><br>
-
-    <h4>Raw Data Set:</h4>
-    {{ sampBar|safe }}
-    <br><br>
+    <!--RAW Data-->
+    <div class="tableDisplay">
+        <h3 class="tableTitle">All Data Unfiltered</h3>
+        <div class="table">
+            {{ samp | safe }}
+        </div>
+    </div>
 </body>
 </html>

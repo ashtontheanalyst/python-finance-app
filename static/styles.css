@@ -24,11 +24,50 @@ darkaccent- #341539
     color: white;
 }
 
+/*Show multiple table sidplays side by side as flex items, center them horizontally,
+wrap when the screen is small (make vertical)*/
+.multipleTable{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+/* When screen width is 700px or less */
+@media (max-width: 700px) {
+    .multipleTable {
+        flex-direction: column;  /* stack vertically */
+        align-items: center;     /* center tables */
+    }
+}
+
+.tableDisplay{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding-bottom: 0px;
+}
+
+.tableTitle{
+    width: 580px;
+    text-align: center;
+    font-family: sans-serif;
+    font-size: 16px;
+    font-weight: bold;
+    background-color: #e7c6ff;
+    color: #341539;
+    padding: 8px;
+    margin-bottom: 0px;
+    margin-top: 20px;
+}
+
 /*ChatGPT*/
-.tableHolder {
+.table {
     display: flex;
     justify-content: center;  /* center horizontally */
-    padding: 40px 0;          /* optional spacing around the table */
+    padding-top: 0px;
+    padding-bottom: 40px;
+    margin-top: 0px;
   }
 
 
@@ -55,5 +94,5 @@ darkaccent- #341539
   }
   
   .styled-table tbody tr:nth-child(even) {
-    background-color: #f4f4f4;
+    background-color: #f0eef5;
   }

@@ -92,30 +92,8 @@ def home():
     # Bar chart for matplot lib
     sampBar = genBarChart(sampT5DamountDate)
 
-    # Pushing the tables to the html page
     return render_template(
         'home.html',
-        samp=samp.to_html(index=False, justify='left'),
-        sampT5DD=sampT5DD.to_html(index=False, justify='left'),
-        sampT5DamountDate=sampT5DamountDate.to_html(index=False, justify='left'),
-        sampT5CD=sampT5CD.to_html(index=False, justify='left'),
-        sampFigure=sampFigure,
-        sampBar=sampBar,)
-
-# Adding some styling
-@app.route("/new")
-def new():
-    # The RAW sample data, all values, records, and columns
-    samp = stripCSV('./upload/SampGTP20June16-22.csv')
-
-    # Top 5 Debits Decending
-    sampT5DD = samp.loc[samp['Amount'] < 0, ['Amount', 'Date', 'Description']].sort_values('Amount').head(5)
-
-    # Top 5 Credits Decending
-    sampT5CD = samp.loc[samp['Amount'] > 0, ['Amount', 'Date', 'Description']].sort_values('Amount', ascending=False).head(5)
-
-    return render_template(
-        'new.html',
         samp=samp.to_html(index=False, justify='left', classes='styled-table'),
         sampT5DD=sampT5DD.to_html(index=False, justify='left', classes='styled-table'),
         sampT5CD=sampT5CD.to_html(index=False, justify='left', classes='styled-table'),
