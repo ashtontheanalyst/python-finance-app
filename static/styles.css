@@ -1,42 +1,59 @@
-body{
-    margin: 0px;
+/*COLORS:
+bg-         #121212
+lightbg-    #3b3b3b
+accent-     #e7c6ff
+darkaccent- #341539
+*/
+
+:root{
+    background-color: #121212;
 }
 
-h1{
-    margin: 0px;
-}
-
-/*Making a header*/
-#header{
-    height: 100px;
-    background-color: rgb(177, 218, 177);
-    /*Turns the div into a flex box, everything inside becomes a flex and is easier to use.
-    align items center makes everything inside the header div center, justify-content is for vertical align*/
+.header{
+    height: 180px;
     display: flex;
-    align-items: center;
     justify-content: center;
+    align-items: center;
 }
 
-#headerText{
-    background-color: rgb(39, 70, 39);
+#headerLogo{
+    height: 210px;
+}
+
+.headerText{
     color: white;
-    font-size: 30px;
+}
+
+/*ChatGPT*/
+.tableHolder {
+    display: flex;
+    justify-content: center;  /* center horizontally */
+    padding: 40px 0;          /* optional spacing around the table */
+  }
+
+
+.styled-table {
+    width: 600px;
+    border-collapse: collapse;
+    font-family: sans-serif;
+    font-size: 12px;
+    overflow: hidden;
+    background-color: white;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+  }
+  
+  .styled-table thead {
+    background-color: #341539;    /* your dark accent */
+    color: #e7c6ff;                /* your accent */
     font-weight: bold;
-    border: 2px solid black;
-    /*This gets the border away from the text, 8px text to border verticall, 16px horizontally*/
-    padding: 8px 16px;
-}
-
-
-/*Playing around with boxes*/
-.box{
-    height: 150px;
-    width: 150px;
-    border: 2px solid black;
-    text-align: center;
-    font-size: 30px;
-}
-
-#box1{
-    background-color: plum;
-}
+  }
+  
+  .styled-table th,
+  .styled-table td {
+    padding: 12px 16px;
+    border-bottom: 1px solid #ddd;
+  }
+  
+  .styled-table tbody tr:nth-child(even) {
+    background-color: #f4f4f4;
+  }

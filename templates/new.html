@@ -7,10 +7,22 @@
     <link rel="stylesheet" href="/static/styles.css">
 </head>
 <body>
-    <div id="header">
-        <span id="headerText">Finance App</span>
+    <div class="header">
+        <h1 class="headerText">Ashton's</h1>
+        <img src="{{ url_for('static', filename='images/whiteLogo.svg') }}" id="headerLogo" alt="Logo">
+        <h1 class="headerText">Finances</h1>
     </div>
 
-    <div class="box" id="box1">BOX1</div>
+    <div class="tableHolder">
+        {{ sampT5DD | safe }}
+    </div>
+
+    <div class="tableHolder">
+        {{ sampT5CD | safe }}
+    </div>
+
+    <div class="tableHolder">
+        {{ samp | safe }}
+    </div>
 </body>
 </html>
