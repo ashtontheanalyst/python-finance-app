@@ -10,8 +10,9 @@ information and spits out different data metrics and visuals.
 - A graph of some sort from plotly or matplotlib
 
 ## Goals:
-- Able to keep track of long term data, each new week of data that's uploaded gets
-put into the running db or frame
+- Ability to upload files and then delete them
+- A home screen that will show blank when there's no data, suggest the user
+to visit the upload page
 - Show some graphs of week to week spending
 - Better looks
 - A separate tab to look at data week to week, unfiltered, RAW and split up nicely
@@ -21,6 +22,11 @@ put into the running db or frame
 - (07/10) Working on some new goals, shifting what I want out of the product
 - (07/10) There's now a Main (home) page showing key metrics, and then the
 Historial page shows the whole RAW dataset
+- (07/11) Created a page called 'Upload' where the user can click a button and
+upload a csv file statement. Right now it has to be the hard named sample one
+right now, anything else and it bugs out: SampGTP20June16-22.csv
+- (07/11) Created a button on the 'Upload' page that will delete all csv files
+in the 'data' folder. Basically, it clears all uploaded data to fresh
 <br><br>
 
 

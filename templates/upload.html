@@ -1,0 +1,40 @@
+<!--Copy the stuff from home, change what's needed below-->
+{% extends "home.html" %}
+
+<!--Changing title of page in Header-->
+{% block pagetitle %} Upload Data {% endblock %}
+
+<!--This is for the main body, put a box for uploading files-->
+{% block content %}
+
+<main class="uploadWrapper">
+
+    <!--Form for the drag and drop-->
+    <form id="uploadButton" action="{{ url_for('uploadInput') }}" method="POST"
+    enctype="multipart/form-data">
+        <h2>Upload CSV Statements</h2>
+        <input type="file" id="fileInput" name="statements" accept=".csv" hidden>
+    </form>
+
+    <!--This is for the delete data button-->
+    <!--NOT WORKING YET-->
+    <form action="{{ url_for('delete') }}" method="POST" id="deleteButton">
+        <h2>Delete Data</h2>
+    <form>
+</main>
+
+<script>
+    const deleteButton = document.getElementById('deleteButton');
+    deleteButton.addEventListener('click', () => deleteButton.submit());
+</script>
+
+<script>
+    /*Allows for inputting data from local system*/
+    const zone      = document.getElementById('uploadButton');
+    const fileInput = document.getElementById('fileInput');
+    
+    zone.addEventListener('click', ()=> fileInput.click());
+    fileInput.addEventListener('change', ()=> zone.submit());
+</script>
+
+{% endblock %}

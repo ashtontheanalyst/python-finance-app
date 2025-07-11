@@ -1,4 +1,6 @@
-from flask import Flask, render_template
+import os
+
+from flask import Flask, render_template, request, redirect, url_for
 import pandas as pd
 
 # For matplotlib
@@ -6,9 +8,9 @@ import base64
 from io import BytesIO
 from matplotlib.figure import Figure
 
-# For plotly
-import plotly.express as px
-import plotly.io as pio
+# CONSTANTS -------------------------------------------------------------------------------------------------------------------
+UPLOAD_DIR = "data"
+
 
 # INIT APP --------------------------------------------------------------------------------------------------------------------
 app = Flask(__name__)
@@ -74,7 +76,7 @@ def genBarChart(df):
 @app.route("/")
 def home():
     # The RAW sample data, all values, records, and columns
-    samp = stripCSV('./upload/SampGTP20June16-22.csv')
+    samp = stripCSV('./data/SampGTP20June16-22.csv')
 
     # Top 5 Debits Decending
     sampT5DD = samp.loc[samp['Amount'] < 0, ['Amount', 'Date', 'Description']].sort_values('Amount').head(5)
@@ -102,12 +104,43 @@ def home():
 @app.route("/historical-data")
 def historical():
     # The RAW sample data, all values, records, and columns
-    samp = stripCSV('./upload/SampGTP20June16-22.csv')
+    samp = stripCSV('./data/SampGTP20June16-22.csv')
 
     return render_template(
         'historical.html',
         samp=samp.to_html(index=False, justify='left', classes='styled-table'),
         )
+
+# This displays the upload page but takes in nothing
+@app.route("/upload", methods=["GET"])
+def upload():
+    return render_template('upload.html')
+
+# This is for posting data to the upload page
+@app.route("/upload", methods=["POST"])
+def uploadInput():
+    files = request.files.getlist("statements")
+
+    # Takes in a max of 4 files, gets the raw filename, saves it to the 
+    # data folder
+    for f in files[:4]:
+        filename = f.filename
+        savePath = os.path.join(UPLOAD_DIR, filename)
+        f.save(savePath)
+
+    return redirect(url_for("home"))
+
+# Deletes all csv files in the 'data' folder
+@app.route("/delete", methods=["POST"])
+def delete():
+    # Go through each file in the folder and delete it's path and file
+    for file in os.listdir(UPLOAD_DIR):
+        if file.lower().endswith(".csv"):
+            full_path = os.path.join(UPLOAD_DIR, file)
+            os.remove(full_path)
+
+    # Since this is just a function, return nothing to the screen
+    return ("", 204)
 
 # RUNNING ---------------------------------------------------------------------------------------------------------------------
 # Debug mode shows us a bunch of terminal messages, debugging, etc. (not for prod.)
