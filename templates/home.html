@@ -7,36 +7,44 @@
     <link rel="stylesheet" href="/static/styles.css">
 </head>
 <body>
-    <!--Header-->
-    <div class="header">
-        <h1 class="headerText">Smith</h1>
-        <img src="{{ url_for('static', filename='images/whiteLogo.svg') }}" id="headerLogo" alt="Logo">
-        <h1 class="headerText">Money</h1>
-    </div>
+    <!--Headder-->
+    <header class="header">
+        <div class="headerInner">
+            <!--Page Title-->
+            <h1 class="headerText">
+                {% block pagetitle %}
+                Metrics & Graphs
+                {% endblock %}
+            </h1>
 
-    <!--Tables-->
-    <!--Side by Side Tables-->
-    <div class="multipleTable">
-        <div class="tableDisplay">
-            <h3 class="tableTitle">Top 5 Debits Decending</h3>
-            <div class="table">
-                {{ sampT5DD | safe }}
+            <!--Buttons for nav-->
+            <div class="buttonBar">
+                <a href="/">
+                    <button class="headerButton">Main</button>
+                </a>
+
+                <a href="/historical-data">
+                    <button class="headerButton">Historical</button>
+                </a>
             </div>
         </div>
-        <div class="tableDisplay">
-            <h3 class="tableTitle">Top 5 Credits Decending</h3>
-            <div class="table">
-                {{ sampT5CD | safe }}
-            </div>
-        </div>
-    </div>
+    </header>
 
-    <!--RAW Data-->
+    {% block content %}
+    <!-- Tables -->
     <div class="tableDisplay">
-        <h3 class="tableTitle">All Data Unfiltered</h3>
+        <h3 class="tableTitle">INCOME | All Credits to Account</h3>
         <div class="table">
-            {{ samp | safe }}
+            {{ sampT5CD | safe }}
         </div>
     </div>
+    
+    <div class="tableDisplay">
+        <h3 class="tableTitle">EXPENSES | Top 5 Decending</h3>
+        <div class="table">
+            {{ sampT5DD | safe }}
+        </div>
+    </div>
+    {% endblock %}
 </body>
 </html>

@@ -5,24 +5,69 @@ accent-     #e7c6ff
 darkaccent- #341539
 */
 
-:root{
+body{
     background-color: #121212;
+    margin: 10px;
 }
 
+/*Header Bar*/
 .header{
-    height: 180px;
+    height: 100px;
+    max-width: 700px;
+    margin-top: 30px;
+    margin-right: auto;
+    margin-left: auto;
+    margin-bottom: 30px;
+    background: #ffffff;
     display: flex;
     justify-content: center;
-    align-items: center;
+
+    border-radius: 25px;
 }
 
-#headerLogo{
-    height: 210px;
+.headerInner{
+    width: 100%;
+    /*This is the max width the items inside the header can expand to*/
+    max-width: 700px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    /*Distance from the outside edge of the logo or button to the max width of the header*/
+    padding: 0 24px;
 }
 
 .headerText{
-    color: white;
+    font-family: sans-serif;
+    font-size: 25px;
 }
+
+/*Collection of buttons*/
+.buttonBar{
+    display: flex;
+    gap: 20px;
+}
+
+/*Button class itself, defines what they are*/
+.headerButton{
+    background: #341539;
+    color: #e7c6ff;
+    border: none;
+    /*Controls the size of the buttons*/
+    padding: 12px 22px;
+    font: bold 14px/1 sans-serif;
+    border-radius: 8px;
+    /*When hovering over the button, show clicker instead os pointer*/
+    cursor: pointer;
+    /*Time it takes to trans to clickable color palette*/
+    transition: background .2s;
+}
+
+/*What happens to buttons on hover*/
+.headerButton:hover{
+    background: #e7c6ff;
+    color: #341539;
+}
+
 
 /*Show multiple table sidplays side by side as flex items, center them horizontally,
 wrap when the screen is small (make vertical)*/
@@ -58,17 +103,15 @@ wrap when the screen is small (make vertical)*/
     color: #341539;
     padding: 8px;
     margin-bottom: 0px;
-    margin-top: 20px;
+    margin-top: 10px;
 }
 
 /*ChatGPT*/
 .table {
     display: flex;
-    justify-content: center;  /* center horizontally */
-    padding-top: 0px;
-    padding-bottom: 40px;
-    margin-top: 0px;
-  }
+    justify-content: center;
+    margin-bottom: 30px;
+}
 
 
 .styled-table {
@@ -78,18 +121,17 @@ wrap when the screen is small (make vertical)*/
     font-size: 12px;
     overflow: hidden;
     background-color: white;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
   }
   
   .styled-table thead {
     background-color: #341539;    /* your dark accent */
-    color: #e7c6ff;                /* your accent */
+    color: #ffffff;                /* your accent */
     font-weight: bold;
   }
   
   .styled-table th,
   .styled-table td {
-    padding: 12px 16px;
+    padding: 8px 12px;
     border-bottom: 1px solid #ddd;
   }
   

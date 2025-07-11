@@ -1,25 +1,26 @@
 # Locally Run Finance App
 
-**MISSION:** Develop a locally running application that takes in banking
+**GOAL:** Develop a locally running application that takes in banking
 information and spits out different data metrics and visuals.
 
 ## Minimum Viable Product (MVP):
-- Hosted in a flask local application
-- Can read in a single csv file that is clean with data like the bank
-- Screen that shows the data pop up in a table
-- A graph or two for PoC
+- Locally hosted flask web application
+- Ingests a single, clean, TEST data set with bank style information
+- Multiple tables with specific filters and/or sorting
+- A graph of some sort from plotly or matplotlib
 
 ## Goals:
-- Dashboard on the front page with a bunch of cool metrics
-    - Circle/Pie chart showing the amount of spending in diff. categories
-    - Top 5 most expensive purchases
-    - Tracks the history of total weekly amount spent, week by week
-- Page for sending information
-    - Some nice box that you double click, it pops up your files,
-    then you double click the one you want. Similar to most web pages
+- Able to keep track of long term data, each new week of data that's uploaded gets
+put into the running db or frame
+- Show some graphs of week to week spending
+- Better looks
+- A separate tab to look at data week to week, unfiltered, RAW and split up nicely
 
 ## Progress:
-- MVP is done, working towards some formatting and metrics I want
+- (06/20) MVP is done, working towards some formatting and metrics I want
+- (07/10) Working on some new goals, shifting what I want out of the product
+- (07/10) There's now a Main (home) page showing key metrics, and then the
+Historial page shows the whole RAW dataset
 <br><br>
 
 
@@ -32,13 +33,6 @@ information and spits out different data metrics and visuals.
 python3 app.py
 ```
 - See it here: [WEBSITE](http://127.0.0.1:5000)
-
-
-## Running App on PythonAnywhere:
-- First: Make sure all local code is pushed to the github repo
-- Login to PythonAnywhere with professional email
-- Open a bash terminal and pull down the most recent code
-
 
 ## Virtual Environment (myenv)
 NOTE: This is all done within VS Code, in the ./code/website folder.

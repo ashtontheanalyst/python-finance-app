@@ -1,0 +1,16 @@
+<!--Copy the stuff from home, change what's needed below-->
+{% extends "home.html" %}
+
+<!--Changing title of page in Header-->
+{% block pagetitle %} Historical Data {% endblock %}
+
+<!--This is for the main body, content-->
+{% block content %}
+    <!--RAW Data-->
+    <div class="tableDisplay">
+        <h3 class="tableTitle">DATA SET | Raw & Unfiltered or Sorted</h3>
+        <div class="table">
+            {{ samp | safe }}
+        </div>
+    </div>
+{% endblock %}

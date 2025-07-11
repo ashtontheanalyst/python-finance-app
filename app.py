@@ -94,11 +94,20 @@ def home():
 
     return render_template(
         'home.html',
-        samp=samp.to_html(index=False, justify='left', classes='styled-table'),
         sampT5DD=sampT5DD.to_html(index=False, justify='left', classes='styled-table'),
         sampT5CD=sampT5CD.to_html(index=False, justify='left', classes='styled-table'),
         )
 
+# Historial page, shows the raw data week to week that's saved
+@app.route("/historical-data")
+def historical():
+    # The RAW sample data, all values, records, and columns
+    samp = stripCSV('./upload/SampGTP20June16-22.csv')
+
+    return render_template(
+        'historical.html',
+        samp=samp.to_html(index=False, justify='left', classes='styled-table'),
+        )
 
 # RUNNING ---------------------------------------------------------------------------------------------------------------------
 # Debug mode shows us a bunch of terminal messages, debugging, etc. (not for prod.)
