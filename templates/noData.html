@@ -1,0 +1,22 @@
+<!--Copy the stuff from home, change what's needed below-->
+{% extends "home.html" %}
+
+<!--Changing title of page in Header-->
+{% block pagetitle %} Upload Your Data {% endblock %}
+
+<!--This is for the main body, put a box for uploading files-->
+{% block content %}
+<main style="color: white; margin-top: 30px;">
+    <center>
+        <h1>Welcome Money Guru!</h1>
+
+        <p>
+            Visit the Upload tab to import your statement data.
+        </p>
+
+        <a href="/upload">
+            <button class="blankUploadButton">Upload</button>
+        </a>
+    </center>
+</main>
+{% endblock %}

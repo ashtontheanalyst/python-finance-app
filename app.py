@@ -10,6 +10,7 @@ from matplotlib.figure import Figure
 
 # CONSTANTS -------------------------------------------------------------------------------------------------------------------
 UPLOAD_DIR = "data"
+DATA_PATH = './data'
 
 
 # INIT APP --------------------------------------------------------------------------------------------------------------------
@@ -37,6 +38,21 @@ def stripCSV(filepath):
     # Return the real body of the csv into a data frame
     df = pd.read_csv(filepath, skiprows=header_index)
     return df
+
+# Counts the amoung of files in 'data' directory
+def countFilesinData():
+    # Checking to make sure we can access the Data folder, if not set an error
+    if os.path.exists(DATA_PATH):
+        print("SUCCESS: Correct path to local 'data' directory.")
+    else:
+        print("ERROR: 'data' folder not able to be reached, check path.")
+
+    # List of all files in the 'data' directory
+    dataFiles = os.listdir(DATA_PATH)
+    print(dataFiles)
+
+    # Return the number of files as an int
+    return(len(dataFiles))
 
 # Function to make a Figure using matplotlib
 def genFigure():
@@ -75,41 +91,53 @@ def genBarChart(df):
 # Home (Landing)
 @app.route("/")
 def home():
-    # The RAW sample data, all values, records, and columns
-    samp = stripCSV('./data/SampGTP20June16-22.csv')
+    numFiles = countFilesinData()
 
-    # Top 5 Debits Decending
-    sampT5DD = samp.loc[samp['Amount'] < 0, ['Amount', 'Date', 'Description']].sort_values('Amount').head(5)
-
-    # Top 5 Credits Decending
-    sampT5CD = samp.loc[samp['Amount'] > 0, ['Amount', 'Date', 'Description']].sort_values('Amount', ascending=False).head(5)
-
-    # Testing the matplotlib Figure
-    sampFigure = genFigure()
-
-    # Top 5 Debits, only the date and amount (x, y) for matplotlib
-    sampT5DamountDate = samp.loc[samp['Amount'] < 0, ['Date', 'Amount']].sort_values('Amount').head(5)
-    sampT5DamountDate['Label'] = sampT5DamountDate['Date'] + "\n" + sampT5DamountDate['Amount'].astype(str)
+    if numFiles == 0:
+        return render_template('noData.html')
     
-    # Bar chart for matplot lib
-    sampBar = genBarChart(sampT5DamountDate)
+    else:
+        # The RAW sample data, all values, records, and columns
+        samp = stripCSV('./data/SampGTP20June16-22.csv')
 
-    return render_template(
-        'home.html',
-        sampT5DD=sampT5DD.to_html(index=False, justify='left', classes='styled-table'),
-        sampT5CD=sampT5CD.to_html(index=False, justify='left', classes='styled-table'),
-        )
+        # Top 5 Debits Decending
+        sampT5DD = samp.loc[samp['Amount'] < 0, ['Amount', 'Date', 'Description']].sort_values('Amount').head(5)
+
+        # Top 5 Credits Decending
+        sampT5CD = samp.loc[samp['Amount'] > 0, ['Amount', 'Date', 'Description']].sort_values('Amount', ascending=False).head(5)
+
+        # Testing the matplotlib Figure
+        sampFigure = genFigure()
+
+        # Top 5 Debits, only the date and amount (x, y) for matplotlib
+        sampT5DamountDate = samp.loc[samp['Amount'] < 0, ['Date', 'Amount']].sort_values('Amount').head(5)
+        sampT5DamountDate['Label'] = sampT5DamountDate['Date'] + "\n" + sampT5DamountDate['Amount'].astype(str)
+        
+        # Bar chart for matplot lib
+        sampBar = genBarChart(sampT5DamountDate)
+
+        return render_template(
+            'home.html',
+            sampT5DD=sampT5DD.to_html(index=False, justify='left', classes='styled-table'),
+            sampT5CD=sampT5CD.to_html(index=False, justify='left', classes='styled-table'),
+            )
 
 # Historial page, shows the raw data week to week that's saved
 @app.route("/historical-data")
 def historical():
-    # The RAW sample data, all values, records, and columns
-    samp = stripCSV('./data/SampGTP20June16-22.csv')
+    numFiles = countFilesinData()
 
-    return render_template(
-        'historical.html',
-        samp=samp.to_html(index=False, justify='left', classes='styled-table'),
-        )
+    if numFiles == 0:
+        return render_template('noData.html')
+    
+    else:
+        # The RAW sample data, all values, records, and columns
+        samp = stripCSV('./data/SampGTP20June16-22.csv')
+
+        return render_template(
+            'historical.html',
+            samp=samp.to_html(index=False, justify='left', classes='styled-table'),
+            )
 
 # This displays the upload page but takes in nothing
 @app.route("/upload", methods=["GET"])

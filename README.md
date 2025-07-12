@@ -27,6 +27,9 @@ upload a csv file statement. Right now it has to be the hard named sample one
 right now, anything else and it bugs out: SampGTP20June16-22.csv
 - (07/11) Created a button on the 'Upload' page that will delete all csv files
 in the 'data' folder. Basically, it clears all uploaded data to fresh
+- (07/12) Created the noData.html page which is returned upon clicking the 'Main'
+or 'Historical' tab if there are no .csv files in the local 'data' folder yet.
+Makes the page not crash if there's no data, makes the user upload.
 <br><br>
 
 
