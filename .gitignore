@@ -1,2 +1,4 @@
 bankenv/
 benkenvWindows/
+data/
+__pycache__/
