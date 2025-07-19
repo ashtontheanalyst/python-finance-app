@@ -65,12 +65,16 @@ def stripCSV(filepath):
 
 # Correcting the data types since they come in as all strings
 def cleanFrame(df):
+
+    # Change "Running Bal." to "Balance", need this for SQLite later
+    df.rename(columns={"Running Bal.":"Balance"}, inplace=True)
+
     df["Date"]              = pd.to_datetime(df["Date"])
     df["Description"]       = df["Description"].astype('string')
     # Makes sure the amount is a string, deletes the comma if it's a thousands
     # value and then converts that to a two decimal digit float
     df["Amount"]            = df["Amount"].astype("string").str.replace(",", "").astype('float64')
-    df["Running Bal."]      = df["Running Bal."].astype("string").str.replace(",", "").astype('float64')
+    df["Balance"]      = df["Balance"].astype("string").str.replace(",", "").astype('float64')
 
     # This drops the first value in the frame, this is the beginning balance line:
     # XX/XX/XXXX,Beginning balance as of XX/XX/XXXX,,"XXX.XX"
